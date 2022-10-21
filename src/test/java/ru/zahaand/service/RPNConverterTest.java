@@ -19,9 +19,11 @@ class RPNConverterTest {
 
     @Test
     void returnReversePolishNotationMathExpression() {
-        Mockito.when(reader.read()).thenReturn("3 + 7");
-        String[] answer = converter.convert("3 + 7");
+        Mockito.when(reader.read()).thenReturn("3 + 7 + 10");
+        String[] answer = converter.convert("3 + 7 + 10");
 
-        Assert.assertTrue(Arrays.equals(new String[]{"3", "7", "+"}, answer));
+        Assert.assertTrue(Arrays.equals(new String[]{"3", "7", "+", "10", "+"}, answer));
     }
+
+
 }
