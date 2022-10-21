@@ -6,7 +6,7 @@ import org.mockito.Mockito;
 
 class CalculatorTest {
     @Test
-    void returnAnswerToSimpleMathExpression() {
+    void returnSumOfTwoNumbers() {
         Reader reader = Mockito.mock(Reader.class);
         Converter converter = Mockito.mock(Converter.class);
         Calculator calculator = new Calculator(reader, converter);
