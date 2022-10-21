@@ -24,12 +24,8 @@ public class RPNConverter implements Converter {
     }
 
     private void appendCharacterToMathExpression(StringBuilder builder, Character character, Stack<Character> stack) {
-        int mathCharacterPriority = getPriority(character);
-        if (!stack.isEmpty()) {
-            int stackTopMathCharacterPriority = getPriority(stack.peek());
-            if (stackTopMathCharacterPriority >= mathCharacterPriority) {
-                builder.append(character).append(" ");
-            }
+        if (!stack.isEmpty() && getPriority(stack.peek()) >= getPriority(character)) {
+            builder.append(character).append(" ");
         } else {
             stack.push(character);
         }
