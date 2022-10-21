@@ -43,4 +43,15 @@ class CalculatorTest {
 
         Assert.assertEquals(6.0, answer);
     }
+
+    @Test
+    void returnDivisionOfTwoNumbers() {
+        Mockito.when(reader.read()).thenReturn("6/3");
+        Mockito.when(converter.convert("6/3")).thenReturn(new String[]{"6", "3", "/"});
+        double answer = calculator.calculate();
+
+        Assert.assertEquals(2.0, answer);
+    }
+
+
 }
