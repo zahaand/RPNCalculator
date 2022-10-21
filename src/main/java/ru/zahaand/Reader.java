@@ -1,5 +1,5 @@
 package ru.zahaand;
 
-public interface MathExpressionReader {
+public interface Reader {
     String read();
 }

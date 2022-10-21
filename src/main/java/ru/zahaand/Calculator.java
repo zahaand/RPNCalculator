@@ -1,10 +1,10 @@
 package ru.zahaand;
 
 public class Calculator {
-    MathExpressionReader reader;
-    MathExpressionConverter converter;
+    Reader reader;
+    Converter converter;
 
-    public Calculator(MathExpressionReader reader, MathExpressionConverter converter) {
+    public Calculator(Reader reader, Converter converter) {
         this.reader = reader;
         this.converter = converter;
     }
@@ -12,6 +12,7 @@ public class Calculator {
     public double calculate() {
         String mathExpression = reader.read();
         Character[] mathExpressionElements = converter.convert(mathExpression);
+
         return 10.0;
     }
 }

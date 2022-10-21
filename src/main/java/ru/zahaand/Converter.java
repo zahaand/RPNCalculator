@@ -1,5 +1,5 @@
 package ru.zahaand;
 
-public interface MathExpressionConverter {
+public interface Converter {
     Character[] convert(String mathExpression);
 }
