@@ -4,6 +4,8 @@ import junit.framework.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import ru.zahaand.service.Converter;
+import ru.zahaand.service.Reader;
 
 class CalculatorTest {
     static Reader reader;
@@ -46,7 +48,7 @@ class CalculatorTest {
 
     @Test
     void returnDivisionOfTwoNumbers() {
-        Mockito.when(reader.read()).thenReturn("6/3");
+       Mockito.when(reader.read()).thenReturn("6/3");
         Mockito.when(converter.convert("6/3")).thenReturn(new String[]{"6", "3", "/"});
         double answer = calculator.calculate();
 
@@ -64,8 +66,8 @@ class CalculatorTest {
 
     @Test
     void returnRemainderOfDivision() {
-        Mockito.when(reader.read()).thenReturn(" 7%3");
-        Mockito.when(converter.convert(" 7%3")).thenReturn(new String[]{"7", "3", "%"});
+       Mockito.when(reader.read()).thenReturn("7%3");
+        Mockito.when(converter.convert("7%3")).thenReturn(new String[]{"7", "3", "%"});
         double answer = calculator.calculate();
 
         Assert.assertEquals(1.0, answer);
