@@ -26,6 +26,11 @@ public class RPNConverter implements Converter {
     private void appendCharacterToMathExpression(StringBuilder builder, Character character, Stack<Character> stack) {
         if (!stack.isEmpty() && getPriority(stack.peek()) >= getPriority(character)) {
             builder.append(character).append(" ");
+        } else if (character.equals(')')) {
+            while (stack.peek() != '(') {
+                builder.append(stack.pop());
+            }
+            stack.pop();
         } else {
             stack.push(character);
         }
@@ -33,6 +38,9 @@ public class RPNConverter implements Converter {
 
     private int getPriority(Character character) {
         switch (character) {
+            case '(' -> {
+                return 0;
+            }
             case '+', '-' -> {
                 return 1;
             }
