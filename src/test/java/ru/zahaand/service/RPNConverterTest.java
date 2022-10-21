@@ -26,10 +26,19 @@ class RPNConverterTest {
     }
 
     @Test
-    void returnRPNExpressionWithDifferentOperationsPriority () {
+    void returnRPNExpressionMainOperationFirst() {
+        Mockito.when(reader.read()).thenReturn("3 * 7 + 10");
+        String[] answer = converter.convert("3 * 7 + 10");
+
+        Assert.assertTrue(Arrays.equals(new String[]{"3", "7", "+", "10", "*"}, answer));
+    }
+
+    @Test
+    void returnRPNExpressionWithDifferentOperationsPriority() {
         Mockito.when(reader.read()).thenReturn("3 + 7 * 10");
         String[] answer = converter.convert("3 + 7 * 10");
 
         Assert.assertTrue(Arrays.equals(new String[]{"3", "7", "10", "*", "+"}, answer));
     }
+
 }
