@@ -28,7 +28,7 @@ public class RPNConverter implements Converter {
         if (!stack.isEmpty()) {
             int stackTopMathCharacterPriority = getPriority(stack.peek());
             if (stackTopMathCharacterPriority >= mathCharacterPriority) {
-                builder.append(character);
+                builder.append(character).append(" ");
             }
         } else {
             stack.push(character);
