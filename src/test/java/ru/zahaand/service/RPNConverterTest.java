@@ -34,7 +34,7 @@ class RPNConverterTest {
     }
 
     @Test
-    void returnRPNExpressionWithDifferentOperationsPriority() {
+    void returnRPNExpressionMainOperationSecond() {
         Mockito.when(reader.read()).thenReturn("3 + 7 * 10");
         String[] answer = converter.convert("3 + 7 * 10");
 
