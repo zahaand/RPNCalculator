@@ -53,5 +53,12 @@ class CalculatorTest {
         Assert.assertEquals(2.0, answer);
     }
 
+    @Test
+    void returnRootOfNumber() {
+        Mockito.when(reader.read()).thenReturn("3^2");
+        Mockito.when(converter.convert("3^2")).thenReturn(new String[]{"3", "2", "^"});
+        double answer = calculator.calculate();
 
+        Assert.assertEquals(9.0, answer);
+    }
 }
