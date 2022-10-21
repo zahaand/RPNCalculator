@@ -11,8 +11,7 @@ public class Calculator {
 
     public double calculate() {
         String mathExpression = reader.read();
-        Character[] mathExpressionElements = converter.convert(mathExpression);
-
+        String[] mathExpressionElements = converter.convert(mathExpression);
         return 10.0;
     }
 }
