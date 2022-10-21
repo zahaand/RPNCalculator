@@ -61,4 +61,13 @@ class CalculatorTest {
 
         Assert.assertEquals(9.0, answer);
     }
+
+    @Test
+    void returnRemainderOfDivision() {
+        Mockito.when(reader.read()).thenReturn(" 7%3");
+        Mockito.when(converter.convert(" 7%3")).thenReturn(new String[]{"7", "3", "%"});
+        double answer = calculator.calculate();
+
+        Assert.assertEquals(1.0, answer);
+    }
 }
