@@ -18,28 +18,31 @@ public class Calculator {
         String mathExpression = reader.read();
         String[] mathExpressionElements = converter.convert(mathExpression);
         Stack<Double> stack = new Stack<>();
-
+        /*
+        if the element is numeric, push the element to the top of the stack
+        else get two numbers from the top of the stack and perform the math operation
+        */
         for (String element : mathExpressionElements) {
-            /*
-            if the element is numeric, push the element to the top of the stack
-            else get two numbers from the top of the stack and perform the math operation
-             */
             if (isNumber(element)) {
                 stack.push(Double.valueOf(element));
             } else {
-                double popNumber1 = stack.pop();
-                double popNumber2 = stack.pop();
-                switch (element) {
-                    case "+" -> stack.push(popNumber2 + popNumber1);
-                    case "-" -> stack.push(popNumber2 - popNumber1);
-                    case "*" -> stack.push(popNumber2 * popNumber1);
-                    case "/" -> stack.push(popNumber2 / popNumber1);
-                    case "%" -> stack.push(popNumber2 % popNumber1);
-                    case "^" -> stack.push(Math.pow(popNumber2, popNumber1));
-                }
+                doCalculate(stack, element);
             }
         }
         return stack.pop();
+    }
+
+    private static void doCalculate(Stack<Double> stack, String element) {
+        double popNumber1 = stack.pop();
+        double popNumber2 = stack.pop();
+        switch (element) {
+            case "+" -> stack.push(popNumber2 + popNumber1);
+            case "-" -> stack.push(popNumber2 - popNumber1);
+            case "*" -> stack.push(popNumber2 * popNumber1);
+            case "/" -> stack.push(popNumber2 / popNumber1);
+            case "%" -> stack.push(popNumber2 % popNumber1);
+            case "^" -> stack.push(Math.pow(popNumber2, popNumber1));
+        }
     }
 
     private boolean isNumber(String mathExpressionElement) {
