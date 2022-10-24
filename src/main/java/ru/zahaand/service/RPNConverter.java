@@ -44,14 +44,14 @@ public class RPNConverter implements Converter {
     private void appendCharacterToMathExpression(StringBuilder builder, Character character, Stack<Character> stack) {
         if (character.equals('(')) {
             stack.push(character);
-        } else if (!stack.isEmpty() && getPriority(stack.peek()) >= getPriority(character)) {
-            builder.append(stack.pop()).append(" ");
-            stack.push(character);
         } else if (character.equals(')')) {
             while (stack.peek() != '(') {
                 builder.append(stack.pop());
             }
             stack.pop();
+        } else if (!stack.isEmpty() && getPriority(stack.peek()) >= getPriority(character)) {
+            builder.append(stack.pop()).append(" ");
+            stack.push(character);
         } else {
             stack.push(character);
         }
