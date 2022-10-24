@@ -1,6 +1,7 @@
 package ru.zahaand;
 
 import junit.framework.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -162,5 +163,18 @@ class CalculatorTest {
         }
 
         Assert.assertEquals(-6.0, answer);
+    }
+
+    @Test
+    void throwsIncorrectOperationException() {
+        Mockito.when(reader.read()).thenReturn("3@7");
+        Mockito.when(converter.convert("3@7"))
+                .thenReturn(new String[]{"3", "7", "@"});
+
+        IncorrectOperationException exception = Assertions.assertThrows(IncorrectOperationException.class, () -> {
+            calculator.calculate();
+        });
+
+        Assertions.assertEquals("This math operation is not correct", exception.getMessage());
     }
 }
