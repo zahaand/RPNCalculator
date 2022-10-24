@@ -1,6 +1,7 @@
 package ru.zahaand.service;
 
 import junit.framework.Assert;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -11,8 +12,8 @@ class RPNConverterTest {
     static Reader reader;
     static Converter converter;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void setUp() {
         reader = Mockito.mock(Reader.class);
         converter = new RPNConverter();
     }
