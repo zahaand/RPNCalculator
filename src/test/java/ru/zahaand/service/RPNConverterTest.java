@@ -43,7 +43,7 @@ class RPNConverterTest {
 
     @Test
     void returnRPNMathExpressionWithBrasses() {
-        Mockito.when(reader.read()).thenReturn("(3 + 7) - 5");
+        Mockito.when(reader.read()).thenReturn("(3 + 7) * 5");
         String[] answer = converter.convert("(3 + 7) * 5");
 
         Assert.assertTrue(Arrays.equals(new String[]{"3", "7", "+", "5", "*"}, answer));
