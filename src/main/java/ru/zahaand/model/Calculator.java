@@ -1,4 +1,4 @@
-package ru.zahaand;
+package ru.zahaand.model;
 
 import ru.zahaand.exception.IncorrectOperationException;
 import ru.zahaand.service.Converter;

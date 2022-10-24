@@ -1,4 +1,4 @@
-package ru.zahaand;
+package ru.zahaand.model;
 
 import junit.framework.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import ru.zahaand.exception.IncorrectOperationException;
+import ru.zahaand.model.Calculator;
 import ru.zahaand.service.Converter;
 import ru.zahaand.service.Reader;
 
