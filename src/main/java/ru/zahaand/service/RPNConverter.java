@@ -7,7 +7,8 @@ public class RPNConverter implements Converter {
     public String[] convert(String mathExpression) {
         StringBuilder mathExpressionBuilder = new StringBuilder();
         Stack<Character> mathCharactersStack = new Stack<>();
-        char[] mathExpressionCharacters = mathExpression.replaceAll("\\s", "").toCharArray();
+        String formatNegativeNumbers = formatNegativeNumbers(mathExpression);
+        char[] mathExpressionCharacters = formatNegativeNumbers.replaceAll("\\s", "").toCharArray();
 
         for (Character character : mathExpressionCharacters) {
             if (Character.isDigit(character)) {
@@ -20,12 +21,32 @@ public class RPNConverter implements Converter {
         while (!mathCharactersStack.isEmpty()) {
             mathExpressionBuilder.append(" ").append(mathCharactersStack.pop());
         }
-        return mathExpressionBuilder.toString().trim().split(" ");
+        return mathExpressionBuilder.toString().trim().replace("  ", " ").split(" ");
+    }
+
+    private static String formatNegativeNumbers(String mathExpression) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < mathExpression.length(); i++) {
+            char mathExpressionElement = mathExpression.charAt(i);
+            if (mathExpressionElement == ('-')) {
+                if (i == 0 || mathExpression.charAt(i - 1) == '(') {
+                    stringBuilder.append("0-");
+                } else {
+                    stringBuilder.append(mathExpressionElement);
+                }
+            } else {
+                stringBuilder.append(mathExpressionElement);
+            }
+        }
+        return String.valueOf(stringBuilder);
     }
 
     private void appendCharacterToMathExpression(StringBuilder builder, Character character, Stack<Character> stack) {
-        if (!stack.isEmpty() && getPriority(stack.peek()) >= getPriority(character)) {
-            builder.append(character).append(" ");
+        if (character.equals('(')) {
+            stack.push(character);
+        } else if (!stack.isEmpty() && getPriority(stack.peek()) >= getPriority(character)) {
+            builder.append(stack.pop()).append(" ");
+            stack.push(character);
         } else if (character.equals(')')) {
             while (stack.peek() != '(') {
                 builder.append(stack.pop());
