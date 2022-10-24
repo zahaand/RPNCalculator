@@ -56,4 +56,12 @@ class RPNConverterTest {
 
         Assert.assertTrue(Arrays.equals(new String[]{"0", "3", "-", "7", "+", "0", "5", "-", "+"}, answer));
     }
+
+    @Test
+    void returnRPNMathExpressionThreeBraces() {
+        Mockito.when(reader.read()).thenReturn("(-3 + 7) + (-5) * (2 * 1)");
+        String[] answer = converter.convert("(-3 + 7) + (-5) * (2 * 1)");
+
+        Assert.assertTrue(Arrays.equals(new String[]{"0", "3", "-", "7", "+", "0", "5", "-", "2", "1", "*", "*", "+"}, answer));
+    }
 }
