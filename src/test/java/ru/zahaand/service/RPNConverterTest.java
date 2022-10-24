@@ -19,10 +19,10 @@ class RPNConverterTest {
 
     @Test
     void returnReversePolishNotationMathExpression() {
-        Mockito.when(reader.read()).thenReturn("3 + 7 + 10");
-        String[] answer = converter.convert("3 + 7 + 10");
+        Mockito.when(reader.read()).thenReturn("10 - 7 + 10");
+        String[] answer = converter.convert("10 - 7 + 10");
 
-        Assert.assertTrue(Arrays.equals(new String[]{"3", "7", "+", "10", "+"}, answer));
+        Assert.assertTrue(Arrays.equals(new String[]{"10", "7", "-", "10", "+"}, answer));
     }
 
     @Test
@@ -30,7 +30,7 @@ class RPNConverterTest {
         Mockito.when(reader.read()).thenReturn("3 * 7 + 10");
         String[] answer = converter.convert("3 * 7 + 10");
 
-        Assert.assertTrue(Arrays.equals(new String[]{"3", "7", "+", "10", "*"}, answer));
+        Assert.assertTrue(Arrays.equals(new String[]{"3", "7", "*", "10", "+"}, answer));
     }
 
     @Test
@@ -54,6 +54,6 @@ class RPNConverterTest {
         Mockito.when(reader.read()).thenReturn("(-3 + 7) + (-5)");
         String[] answer = converter.convert("(-3 + 7) + (-5)");
 
-        Assert.assertTrue(Arrays.equals(new String[]{"0", "3", "-,", "7", "+", "0", "5", "-", "+"}, answer));
+        Assert.assertTrue(Arrays.equals(new String[]{"0", "3", "-", "7", "+", "0", "5", "-", "+"}, answer));
     }
 }
