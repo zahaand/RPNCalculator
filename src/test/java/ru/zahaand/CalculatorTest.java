@@ -4,6 +4,7 @@ import junit.framework.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import ru.zahaand.exception.IncorrectOperationException;
 import ru.zahaand.service.Converter;
 import ru.zahaand.service.Reader;
 
@@ -25,7 +26,12 @@ class CalculatorTest {
         Mockito.when(converter.convert("3+7"))
                 .thenReturn(new String[]{"3", "7", "+"});
 
-        double answer = calculator.calculate();
+        double answer = 0;
+        try {
+            answer = calculator.calculate();
+        } catch (IncorrectOperationException e) {
+            throw new RuntimeException(e);
+        }
 
         Assert.assertEquals(10.0, answer);
     }
@@ -36,7 +42,12 @@ class CalculatorTest {
         Mockito.when(converter.convert("7-3"))
                 .thenReturn(new String[]{"7", "3", "-"});
 
-        double answer = calculator.calculate();
+        double answer = 0;
+        try {
+            answer = calculator.calculate();
+        } catch (IncorrectOperationException e) {
+            throw new RuntimeException(e);
+        }
 
         Assert.assertEquals(4.0, answer);
     }
@@ -47,7 +58,12 @@ class CalculatorTest {
         Mockito.when(converter.convert("3*2"))
                 .thenReturn(new String[]{"3", "2", "*"});
 
-        double answer = calculator.calculate();
+        double answer = 0;
+        try {
+            answer = calculator.calculate();
+        } catch (IncorrectOperationException e) {
+            throw new RuntimeException(e);
+        }
 
         Assert.assertEquals(6.0, answer);
     }
@@ -58,7 +74,12 @@ class CalculatorTest {
         Mockito.when(converter.convert("6/3"))
                 .thenReturn(new String[]{"6", "3", "/"});
 
-        double answer = calculator.calculate();
+        double answer = 0;
+        try {
+            answer = calculator.calculate();
+        } catch (IncorrectOperationException e) {
+            throw new RuntimeException(e);
+        }
 
         Assert.assertEquals(2.0, answer);
     }
@@ -69,7 +90,12 @@ class CalculatorTest {
         Mockito.when(converter.convert("3^2"))
                 .thenReturn(new String[]{"3", "2", "^"});
 
-        double answer = calculator.calculate();
+        double answer = 0;
+        try {
+            answer = calculator.calculate();
+        } catch (IncorrectOperationException e) {
+            throw new RuntimeException(e);
+        }
 
         Assert.assertEquals(9.0, answer);
     }
@@ -80,7 +106,12 @@ class CalculatorTest {
         Mockito.when(converter.convert("7%3"))
                 .thenReturn(new String[]{"7", "3", "%"});
 
-        double answer = calculator.calculate();
+        double answer = 0;
+        try {
+            answer = calculator.calculate();
+        } catch (IncorrectOperationException e) {
+            throw new RuntimeException(e);
+        }
 
         Assert.assertEquals(1.0, answer);
     }
@@ -91,7 +122,12 @@ class CalculatorTest {
         Mockito.when(converter.convert("(3+7)*5"))
                 .thenReturn(new String[]{"3", "7", "+", "5", "*"});
 
-        double answer = calculator.calculate();
+        double answer = 0;
+        try {
+            answer = calculator.calculate();
+        } catch (IncorrectOperationException e) {
+            throw new RuntimeException(e);
+        }
 
         Assert.assertEquals(50.0, answer);
     }
@@ -102,7 +138,12 @@ class CalculatorTest {
         Mockito.when(converter.convert("(-3+7)+(-5)"))
                 .thenReturn(new String[]{"0", "3", "-", "7", "+", "0", "5", "-", "+"});
 
-        double answer = calculator.calculate();
+        double answer = 0;
+        try {
+            answer = calculator.calculate();
+        } catch (IncorrectOperationException e) {
+            throw new RuntimeException(e);
+        }
 
         Assert.assertEquals(-1.0, answer);
     }
@@ -113,7 +154,12 @@ class CalculatorTest {
         Mockito.when(converter.convert("(-3+7)+(-5)*(2*1)"))
                 .thenReturn(new String[]{"0", "3", "-", "7", "+", "0", "5", "-", "2", "1", "*", "*", "+"});
 
-        double answer = calculator.calculate();
+        double answer = 0;
+        try {
+            answer = calculator.calculate();
+        } catch (IncorrectOperationException e) {
+            throw new RuntimeException(e);
+        }
 
         Assert.assertEquals(-6.0, answer);
     }

@@ -1,5 +1,6 @@
 package ru.zahaand;
 
+import ru.zahaand.exception.IncorrectOperationException;
 import ru.zahaand.service.Converter;
 import ru.zahaand.service.Reader;
 
@@ -14,7 +15,7 @@ public class Calculator {
         this.converter = converter;
     }
 
-    public double calculate() {
+    public double calculate() throws IncorrectOperationException {
         String mathExpression = reader.read();
         String[] mathExpressionElements = converter.convert(mathExpression);
         Stack<Double> stack = new Stack<>();
@@ -32,7 +33,7 @@ public class Calculator {
         return stack.pop();
     }
 
-    private static void doCalculate(Stack<Double> stack, String element) {
+    private static void doCalculate(Stack<Double> stack, String element) throws IncorrectOperationException {
         double popNumber1 = stack.pop();
         double popNumber2 = stack.pop();
         switch (element) {
@@ -42,6 +43,7 @@ public class Calculator {
             case "/" -> stack.push(popNumber2 / popNumber1);
             case "%" -> stack.push(popNumber2 % popNumber1);
             case "^" -> stack.push(Math.pow(popNumber2, popNumber1));
+            default -> throw new IncorrectOperationException("This math operation is not correct");
         }
     }
 
