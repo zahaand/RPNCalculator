@@ -58,7 +58,7 @@ class RPNConverterTest {
     }
 
     @Test
-    void returnRPNMathExpressionThreeBraces() {
+    void returnRPNMathExpressionWithThreeBraces() {
         Mockito.when(reader.read()).thenReturn("(-3 + 7) + (-5) * (2 * 1)");
         String[] answer = converter.convert("(-3 + 7) + (-5) * (2 * 1)");
 
