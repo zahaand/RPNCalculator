@@ -5,11 +5,14 @@ import java.util.Stack;
 public class RPNConverter implements Converter {
     @Override
     public String[] convert(String mathExpression) {
-        StringBuilder mathExpressionBuilder = new StringBuilder();
-        Stack<Character> mathCharactersStack = new Stack<>();
         String formatNegativeNumbers = formatNegativeNumbers(mathExpression);
         char[] mathExpressionCharacters = formatNegativeNumbers.replaceAll("\\s", "").toCharArray();
+        return getConvertedExpression(mathExpressionCharacters);
+    }
 
+    private String[] getConvertedExpression(char[] mathExpressionCharacters) {
+        Stack<Character> mathCharactersStack = new Stack<>();
+        StringBuilder mathExpressionBuilder = new StringBuilder();
         for (Character character : mathExpressionCharacters) {
             if (Character.isDigit(character)) {
                 mathExpressionBuilder.append(character);
@@ -24,6 +27,9 @@ public class RPNConverter implements Converter {
         return mathExpressionBuilder.toString().trim().replace("  ", " ").split(" ");
     }
 
+    /*
+    replaces all negative numbers with expression (0 - number)
+     */
     private static String formatNegativeNumbers(String mathExpression) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < mathExpression.length(); i++) {
