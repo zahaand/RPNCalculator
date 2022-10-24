@@ -72,4 +72,13 @@ class CalculatorTest {
 
         Assert.assertEquals(1.0, answer);
     }
+
+    @Test
+    void returnAnswerToMathExpressionWithBrasses() {
+        Mockito.when(reader.read()).thenReturn("(3+7)*5");
+        Mockito.when(converter.convert("(3+7)*5")).thenReturn(new String[]{"3", "7", "+", "5", "*"});
+        double answer = calculator.calculate();
+
+        Assert.assertEquals(50.0, answer);
+    }
 }
