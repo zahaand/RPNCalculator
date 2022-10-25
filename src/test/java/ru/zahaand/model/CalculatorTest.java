@@ -1,14 +1,14 @@
 package ru.zahaand.model;
 
-import junit.framework.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import ru.zahaand.exception.IncorrectOperationException;
-import ru.zahaand.model.Calculator;
 import ru.zahaand.service.Converter;
 import ru.zahaand.service.Reader;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorTest {
     static Reader reader;
@@ -35,7 +35,7 @@ class CalculatorTest {
             throw new RuntimeException(e);
         }
 
-        Assert.assertEquals(10.0, answer);
+        assertEquals(10.0, answer);
     }
 
     @Test
@@ -51,7 +51,7 @@ class CalculatorTest {
             throw new RuntimeException(e);
         }
 
-        Assert.assertEquals(4.0, answer);
+        assertEquals(4.0, answer);
     }
 
     @Test
@@ -67,12 +67,12 @@ class CalculatorTest {
             throw new RuntimeException(e);
         }
 
-        Assert.assertEquals(6.0, answer);
+        assertEquals(6.0, answer);
     }
 
     @Test
     void returnDivisionOfTwoNumbers() {
-       Mockito.when(reader.read()).thenReturn("6/3");
+        Mockito.when(reader.read()).thenReturn("6/3");
         Mockito.when(converter.convert("6/3"))
                 .thenReturn(new String[]{"6", "3", "/"});
 
@@ -83,7 +83,7 @@ class CalculatorTest {
             throw new RuntimeException(e);
         }
 
-        Assert.assertEquals(2.0, answer);
+        assertEquals(2.0, answer);
     }
 
     @Test
@@ -99,12 +99,12 @@ class CalculatorTest {
             throw new RuntimeException(e);
         }
 
-        Assert.assertEquals(9.0, answer);
+        assertEquals(9.0, answer);
     }
 
     @Test
     void returnRemainderOfDivision() {
-       Mockito.when(reader.read()).thenReturn("7%3");
+        Mockito.when(reader.read()).thenReturn("7%3");
         Mockito.when(converter.convert("7%3"))
                 .thenReturn(new String[]{"7", "3", "%"});
 
@@ -115,7 +115,7 @@ class CalculatorTest {
             throw new RuntimeException(e);
         }
 
-        Assert.assertEquals(1.0, answer);
+        assertEquals(1.0, answer);
     }
 
     @Test
@@ -131,7 +131,7 @@ class CalculatorTest {
             throw new RuntimeException(e);
         }
 
-        Assert.assertEquals(50.0, answer);
+        assertEquals(50.0, answer);
     }
 
     @Test
@@ -147,7 +147,7 @@ class CalculatorTest {
             throw new RuntimeException(e);
         }
 
-        Assert.assertEquals(-1.0, answer);
+        assertEquals(-1.0, answer);
     }
 
     @Test
@@ -163,7 +163,7 @@ class CalculatorTest {
             throw new RuntimeException(e);
         }
 
-        Assert.assertEquals(-6.0, answer);
+        assertEquals(-6.0, answer);
     }
 
     @Test
@@ -172,10 +172,10 @@ class CalculatorTest {
         Mockito.when(converter.convert("3@7"))
                 .thenReturn(new String[]{"3", "7", "@"});
 
-        IncorrectOperationException exception = Assertions.assertThrows(IncorrectOperationException.class, () -> {
+        IncorrectOperationException exception = assertThrows(IncorrectOperationException.class, () -> {
             calculator.calculate();
         });
 
-        Assertions.assertEquals("This math operation is not correct", exception.getMessage());
+        assertEquals("This math operation is not correct", exception.getMessage());
     }
 }

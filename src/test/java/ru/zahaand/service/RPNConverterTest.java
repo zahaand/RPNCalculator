@@ -1,12 +1,10 @@
 package ru.zahaand.service;
 
-import junit.framework.Assert;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.Arrays;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class RPNConverterTest {
     static Reader reader;
@@ -23,7 +21,7 @@ class RPNConverterTest {
         Mockito.when(reader.read()).thenReturn("10 - 7 + 10");
         String[] answer = converter.convert("10 - 7 + 10");
 
-        Assert.assertTrue(Arrays.equals(new String[]{"10", "7", "-", "10", "+"}, answer));
+        assertArrayEquals(new String[]{"10", "7", "-", "10", "+"}, answer);
     }
 
     @Test
@@ -31,7 +29,7 @@ class RPNConverterTest {
         Mockito.when(reader.read()).thenReturn("3 * 7 + 10");
         String[] answer = converter.convert("3 * 7 + 10");
 
-        Assert.assertTrue(Arrays.equals(new String[]{"3", "7", "*", "10", "+"}, answer));
+        assertArrayEquals(new String[]{"3", "7", "*", "10", "+"}, answer);
     }
 
     @Test
@@ -39,7 +37,7 @@ class RPNConverterTest {
         Mockito.when(reader.read()).thenReturn("3 + 7 * 10");
         String[] answer = converter.convert("3 + 7 * 10");
 
-        Assert.assertTrue(Arrays.equals(new String[]{"3", "7", "10", "*", "+"}, answer));
+        assertArrayEquals(new String[]{"3", "7", "10", "*", "+"}, answer);
     }
 
     @Test
@@ -47,7 +45,7 @@ class RPNConverterTest {
         Mockito.when(reader.read()).thenReturn("(3 + 7) * 5");
         String[] answer = converter.convert("(3 + 7) * 5");
 
-        Assert.assertTrue(Arrays.equals(new String[]{"3", "7", "+", "5", "*"}, answer));
+        assertArrayEquals(new String[]{"3", "7", "+", "5", "*"}, answer);
     }
 
     @Test
@@ -55,7 +53,7 @@ class RPNConverterTest {
         Mockito.when(reader.read()).thenReturn("(-3 + 7) + (-5)");
         String[] answer = converter.convert("(-3 + 7) + (-5)");
 
-        Assert.assertTrue(Arrays.equals(new String[]{"0", "3", "-", "7", "+", "0", "5", "-", "+"}, answer));
+        assertArrayEquals(new String[]{"0", "3", "-", "7", "+", "0", "5", "-", "+"}, answer);
     }
 
     @Test
@@ -63,6 +61,6 @@ class RPNConverterTest {
         Mockito.when(reader.read()).thenReturn("(-3 + 7) + (-5) * (2 * 1)");
         String[] answer = converter.convert("(-3 + 7) + (-5) * (2 * 1)");
 
-        Assert.assertTrue(Arrays.equals(new String[]{"0", "3", "-", "7", "+", "0", "5", "-", "2", "1", "*", "*", "+"}, answer));
+        assertArrayEquals(new String[]{"0", "3", "-", "7", "+", "0", "5", "-", "2", "1", "*", "*", "+"}, answer);
     }
 }

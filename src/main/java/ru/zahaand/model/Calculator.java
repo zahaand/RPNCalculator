@@ -7,8 +7,8 @@ import ru.zahaand.service.Reader;
 import java.util.Stack;
 
 public class Calculator {
-    Reader reader;
-    Converter converter;
+    private final Reader reader;
+    private final Converter converter;
 
     public Calculator(Reader reader, Converter converter) {
         this.reader = reader;
@@ -47,7 +47,7 @@ public class Calculator {
         }
     }
 
-    private boolean isNumber(String mathExpressionElement) {
+    private static boolean isNumber(String mathExpressionElement) {
         try {
             Integer.parseInt(mathExpressionElement);
             return true;

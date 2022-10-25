@@ -7,9 +7,9 @@ import ru.zahaand.service.RPNConverter;
 import ru.zahaand.service.Reader;
 
 public class MainCalculator {
-    static Reader reader = new ConsoleReader();
-    static Converter converter = new RPNConverter();
-    static Calculator calculator = new Calculator(reader, converter);
+    private static final Reader reader = new ConsoleReader();
+    private static final Converter converter = new RPNConverter();
+    private static final Calculator calculator = new Calculator(reader, converter);
 
     public static void main(String[] args) {
         System.out.println("= " + calculator.calculate());
